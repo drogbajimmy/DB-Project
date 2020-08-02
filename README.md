@@ -53,25 +53,36 @@ Run the application via command line
 ```
 $ ./gradlew bootRun
 ```
-* Open your browser and visit http://localhost:8080/SubscriptionManager/index
-* Note:
+Open your browser and visit http://localhost:8080/SubscriptionManager/index
+
+Note:
 * Please use email of customer as username to login
 * Please use the pre-defined customer email to login
-*     test1@baomidou.com
-*     test2@baomidou.com
-*     test3@baomidou.com
-*     test4@baomidou.com
-*     test5@baomidou.com
+```
+test1@baomidou.com
+test2@baomidou.com
+test3@baomidou.com
+test4@baomidou.com
+test5@baomidou.com
+```
+
 * To add other customers or services, make sure insert it in both db and csv files, then restart server
-* H2 Console 
-* http://localhost:8080/SubscriptionManager/h2-console/
-*     Driver Class - org.h2.Driver
-*     JDBC URL - jdbc:h2:~/sp
-*     User Name - sa
-*     Password - sa
+
+
+H2 Console 
+
+http://localhost:8080/SubscriptionManager/h2-console/
+```
+Driver Class - org.h2.Driver
+JDBC URL - jdbc:h2:~/sp
+User Name - sa
+Password - sa
+```
 
 ## Reference
-*     DB-Project/src/main/resources/db/schema.sql
-*     DB-Project/src/main/resources/db/data.sql
-*     DB-Project/src/main/resources/db/customer.csv
-*     DB-Project/src/main/resources/db/service.csv
+```
+DB-Project/src/main/resources/db/schema.sql
+DB-Project/src/main/resources/db/data.sql
+DB-Project/src/main/resources/db/customer.csv
+DB-Project/src/main/resources/db/service.csv
+```
