@@ -1,0 +1,30 @@
+-- DROP TABLE IF EXISTS customer;
+
+CREATE TABLE IF NOT EXISTS customer
+(
+  id BIGINT(20) NOT NULL,
+  name VARCHAR(30) NULL DEFAULT NULL,
+  email VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+-- DROP TABLE IF EXISTS service;
+
+CREATE TABLE IF NOT EXISTS service
+(
+  id BIGINT(20) NOT NULL,
+  name VARCHAR(40) NULL DEFAULT NULL,
+  desc VARCHAR(200) NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+-- DROP TABLE IF EXISTS subscription;
+
+CREATE TABLE IF NOT EXISTS subscription
+(
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  customer_id BIGINT(20) NOT NULL,
+  service_id BIGINT(20) NOT NULL,
+  UNIQUE KEY customer_service_id (customer_id, service_id) USING BTREE,
+  PRIMARY KEY (id)
+);

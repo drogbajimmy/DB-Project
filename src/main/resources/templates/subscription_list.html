@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Your Subscription</title>
+</head>
+<body>
+
+<table>
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <div>
+                <input type="submit"
+                       name="logout-submit"
+                       id="logout-submit"
+                       value="Log Out">
+            </div>
+        </form>
+    </div>
+</table>
+
+<h1>Subscribed Service</h1>
+<table>
+    <tr>
+        <th>SNO</th>
+        <th>SERVICE</th>
+        <th>CUSTOMER ID</th>
+        <th>SERVICE ID</th>
+        <th>UNSUBSCRIBE</th>
+    </tr>
+    <tr th:each="subscribedService  : ${subscribedServices}">
+        <td th:text="${subscribedService.id}">001</td>
+        <td th:text="${subscribedService.serviceName}">SERVICE</td>
+        <td th:text="${subscribedService.customerId}">CUSTOMER ID</td>
+        <td th:text="${subscribedService.serviceId}">SERVICE ID</td>
+        <td><button type="button" th:onclick="unsubscribeService([[${subscribedService.id}]])">UNSUBSCRIBE</button></td>
+    </tr>
+</table>
+
+<h1>Unsubscribed Service</h1>
+<table>
+    <tr>
+        <th>SNO</th>
+        <th>SERVICE</th>
+        <th>SUBSCRIBE</th>
+    </tr>
+    <tr th:each="entry : ${unsubscribedServices}">
+        <td th:text="${entry.key}">100</td>
+        <td th:text="${entry.value}">SERVICE</td>
+        <td><button type="button" th:onclick="subscribeService([[${entry.key}]])">SUBSCRIBE</button></td>
+    </tr>
+</table>
+
+</body>
+
+<script>
+
+function unsubscribeService(id) {
+
+  const form = document.createElement('form');
+  form.method = 'post';
+  form.action = '/SubscriptionManager/subscription/' + id;
+  form.id = 'unsubscribeForm';
+  form.name = 'unsubscribeForm';
+
+  const hiddenField = document.createElement('input');
+  hiddenField.type = 'hidden';
+  hiddenField.name = '_method';
+  hiddenField.value = 'delete';
+  form.appendChild(hiddenField);
+
+  document.body.appendChild(form);
+  form.submit();
+}
+
+
+function subscribeService(sid) {
+
+  const form = document.createElement('form');
+  form.method = 'post';
+  form.action = '/SubscriptionManager/subscription';
+  form.id = 'subscribeForm';
+  form.name = 'subscribeForm';
+
+  const hiddenField = document.createElement('input');
+  hiddenField.type = 'hidden';
+  hiddenField.name = 'serviceId';
+  hiddenField.value = sid;
+  form.appendChild(hiddenField);
+
+  document.body.appendChild(form);
+  form.submit();
+}
+
+</script>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="subscription.dao.SubscriptionDao" >
+    <resultMap id="SubscriptionResultMap" type="subscription.entity.Subscription" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="service_name" property="serviceName" jdbcType="VARCHAR" />
+        <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+        <result column="service_id" property="serviceId" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="selectByCustomerId" resultMap="SubscriptionResultMap" parameterType="java.lang.Integer" >
+        select
+        subscription.id as id, service.name as service_name, customer_id, service_id
+        from subscription
+        inner join service
+        on subscription.service_id = service.id
+        where customer_id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from subscription
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="subscription.entity.Subscription" >
+        insert into subscription (customer_id, service_id)
+        values (#{customerId,jdbcType=INTEGER}, #{serviceId,jdbcType=INTEGER})
+    </insert>
+</mapper>

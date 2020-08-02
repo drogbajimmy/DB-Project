@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<h1>Login</h1>
+
+<form th:action="@{/login}" th:object="${customer}" method="post">
+    <ul>
+        <li th:text="${error}" th:if="${error} ne null"/>
+    </ul>
+    <div>
+        <label for="username">Username</label>:
+        <input type="text" id="username" th:field="*{email}" />
+    </div>
+    <div>
+        <input type="submit"
+           name="login-submit"
+           id="login-submit"
+           value="Log In">
+    </div>
+    <div>
+        Please use your email address to login!
+    </div>
+</form>
+</body>
+</html>
